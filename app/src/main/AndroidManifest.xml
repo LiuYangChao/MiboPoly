@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.OpenEyeVideoActivity"></activity>
+        <activity android:name=".view.activity.OpenEyeVideoActivity" />
+        <activity android:name=".view.activity.ShowVideoActivity"></activity>
     </application>
 
 </manifest>
