@@ -64,6 +64,8 @@ public class OpenEyeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 intent.putExtra("video_detail_tv_share", openEyeEntity.getData().getConsumption().getShareCount());
                 intent.putExtra("video_detail_tv_reply", openEyeEntity.getData().getConsumption().getReplyCount());
                 intent.putExtra("video_second_background", openEyeEntity.getData().getCover().getBlurred());
+                intent.putExtra("videoUri", openEyeEntity.getData().getPlayUrl());
+                intent.putExtra("videoTitle", openEyeEntity.getData().getTitle());
                 context.startActivity(intent);
             }
         });
