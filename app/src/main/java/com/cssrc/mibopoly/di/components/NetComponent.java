@@ -1,6 +1,5 @@
 package com.cssrc.mibopoly.di.components;
 
-import com.cssrc.mibopoly.MainActivity;
 import com.cssrc.mibopoly.di.modules.NetModule;
 import com.cssrc.mibopoly.model.api.ApiService;
 

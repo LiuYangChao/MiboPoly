@@ -23,10 +23,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.OpenEyeVideoActivity" />
-        <activity android:name=".view.activity.ShowVideoActivity"
+        <activity
+            android:name=".view.activity.ShowVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.activity.OneSeatActivity" />
+        <activity
+            android:name=".view.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>
