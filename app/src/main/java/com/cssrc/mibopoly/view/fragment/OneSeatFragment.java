@@ -31,13 +31,21 @@ import butterknife.ButterKnife;
  */
 public class OneSeatFragment extends Fragment implements OneSeatContract.View {
 
-    @Bind(R.id.oneseat_recyclerview)
+    @Bind(R.id.recyclerview)
     RecyclerView recyclerView;
 
     OneSeatAdapter oneSeatAdapter;
 
     @Inject
     OneSeatPresenter oneSeatPresenter;
+
+    public static OneSeatFragment newInstance(String text){
+        OneSeatFragment fragmentCommon=new OneSeatFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("text",text);
+        fragmentCommon.setArguments(bundle);
+        return fragmentCommon;
+    }
 
     public OneSeatFragment() {
     }

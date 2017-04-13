@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, SwipeRefreshLayout.OnRefreshListener {
-    @Bind(R.id.openeye_recyclerview)
+    @Bind(R.id.recyclerview)
     RecyclerView openeye_recyclerview;
 
     Context context;
@@ -40,6 +40,14 @@ public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, S
 
     @Inject
     OpenEyePresenter openEyePresenter;
+
+    public static OpenEyeFragment newInstance(String text){
+        OpenEyeFragment fragmentCommon=new OpenEyeFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("text",text);
+        fragmentCommon.setArguments(bundle);
+        return fragmentCommon;
+    }
 
     public OpenEyeFragment(){
 

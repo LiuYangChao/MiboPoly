@@ -25,6 +25,14 @@ public class SettingFragment extends Fragment {
     @Bind(R.id.setTest)
     TextView textView;
 
+    public static SettingFragment newInstance(String text){
+        SettingFragment fragmentCommon=new SettingFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("text",text);
+        fragmentCommon.setArguments(bundle);
+        return fragmentCommon;
+    }
+
     public SettingFragment() {
         // Required empty public constructor
     }

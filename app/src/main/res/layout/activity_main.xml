@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <include layout="@layout/include_toolbar" />
-
-    </android.support.design.widget.AppBarLayout>
 
 
     <!--<android.support.v7.widget.RecyclerView-->
@@ -22,29 +11,79 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="0dp"-->
     <!--android:layout_weight="1" />-->
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bnv_menu"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        app:itemIconTint="@color/colorPrimary"
-        app:itemTextColor="@color/colorPrimary"
-        app:menu="@menu/menu_bottom_navigation" />
+
+    <!--<android.support.design.widget.BottomNavigationView-->
+        <!--android:id="@+id/bnv_menu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--app:itemIconTint="@color/colorPrimary"-->
+        <!--app:itemTextColor="@color/colorPrimary"-->
+        <!--app:menu="@menu/menu_bottom_navigation" />-->
+
+
+    <!--<com.ycl.tabview.library.TabView-->
+        <!--android:id="@+id/bnv_menu"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_gravity="bottom" />-->
+
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:id="@+id/appbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+
+        <!--<include layout="@layout/include_toolbar" />-->
+
+    <!--</android.support.design.widget.AppBarLayout>-->
 
     <LinearLayout
         android:id="@+id/main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bnv_menu"
-        android:layout_below="@+id/coor"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical" />
 
-    <View
+    <!--<com.wingsofts.byeburgerbardemo.NoScrollViewPager-->
+        <!--android:id="@+id/viewpager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--&gt;-->
+
+    <!--</com.wingsofts.byeburgerbardemo.NoScrollViewPager>-->
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bye_burger"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@+id/bnv_menu"
-        android:background="@color/gray" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="#fff"
+        app:itemTextColor="#fff"
+        app:layout_behavior="@string/bye_burger_bottom_behavior"
+        app:menu="@menu/menu_bottom_navigation"
+        >
+    </android.support.design.widget.BottomNavigationView>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--app:layout_behavior="@string/bye_burger_title_behavior"-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--&gt;-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <android.support.v7.widget.Toolbar
+        app:layout_behavior="@string/bye_burger_title_behavior"
+    android:id="@+id/tb_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    app:title="@string/app_name"
+    app:theme="@style/OverFlowMenuTheme"
+    app:popupTheme="@style/AppTheme"
+    android:background="@color/colorPrimary"/>
+
 </android.support.design.widget.CoordinatorLayout>

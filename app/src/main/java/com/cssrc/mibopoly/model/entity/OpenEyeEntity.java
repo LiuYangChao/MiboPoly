@@ -50,7 +50,6 @@ public class OpenEyeEntity {
         private String actionUrl;
         private String adTrack;
         private String shade;
-        private String label;
         private String playUrl;
         private int duration;
         long releaseTime;
@@ -161,14 +160,6 @@ public class OpenEyeEntity {
 
         public void setShade(String shade) {
             this.shade = shade;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
         }
 
         public String getPlayUrl() {

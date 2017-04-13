@@ -14,6 +14,13 @@ import com.cssrc.mibopoly.R;
  */
 public class DoubanFragment extends Fragment {
 
+    public static DoubanFragment newInstance(String text){
+        DoubanFragment fragmentCommon=new DoubanFragment();
+        Bundle bundle=new Bundle();
+        bundle.putString("text",text);
+        fragmentCommon.setArguments(bundle);
+        return fragmentCommon;
+    }
 
     public DoubanFragment() {
         // Required empty public constructor

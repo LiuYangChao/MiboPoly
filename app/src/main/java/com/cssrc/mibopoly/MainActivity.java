@@ -14,7 +14,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.cssrc.mibopoly.adapter.MainAdapter;
 import com.cssrc.mibopoly.app.miboApplication;
@@ -28,8 +30,11 @@ import com.cssrc.mibopoly.view.fragment.DoubanFragment;
 import com.cssrc.mibopoly.view.fragment.OneSeatFragment;
 import com.cssrc.mibopoly.view.fragment.OpenEyeFragment;
 import com.cssrc.mibopoly.view.fragment.SettingFragment;
+import com.ycl.tabview.library.TabView;
+import com.ycl.tabview.library.TabViewChild;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,7 +52,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 //    @Bind(R.id.rv_content)
 //    RecyclerView recyclerView;
-    @Bind(R.id.bnv_menu)
+//    @Bind(R.id.bnv_menu)
+//    com.ycl.tabview.library.TabView tabView;
+
+
+    @Bind(R.id.bye_burger)
     BottomNavigationView bottomNavigationView;
     @Bind(R.id.main_fragment)
     LinearLayout main_fragment;
@@ -88,14 +97,76 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void initView(){
         fragmentManager = getSupportFragmentManager();
-//        transaction = fragmentManager.beginTransaction();
-//        if(openEyeFragment == null){
-//            openEyeFragment = new OpenEyeFragment();
-//            transaction.add(R.id.main_fragment, openEyeFragment);
-//        }else{
-//            transaction.show(openEyeFragment);
-//        }
-//        transaction.commit();
+//        List<TabViewChild> tabViewChildList=new ArrayList<>();
+//        TabViewChild tabViewChild01=new TabViewChild(R.drawable.test,R.drawable.test,"首页",  OpenEyeFragment.newInstance("首页"));
+//        TabViewChild tabViewChild02=new TabViewChild(R.drawable.ic_action_article,R.drawable.ic_action_article,"分类",  OneSeatFragment.newInstance("分类"));
+//        TabViewChild tabViewChild03=new TabViewChild(R.drawable.ic_action_movie,R.drawable.ic_action_movie,"资讯",  DoubanFragment.newInstance("资讯"));
+//        TabViewChild tabViewChild04=new TabViewChild(R.drawable.test,R.drawable.test,"购物车",SettingFragment.newInstance("购物车"));
+//        tabViewChildList.add(tabViewChild01);
+//        tabViewChildList.add(tabViewChild02);
+//        tabViewChildList.add(tabViewChild03);
+//        tabViewChildList.add(tabViewChild04);
+//        tabView.setTabViewDefaultPosition(0);
+//        tabView.setTabViewChild(tabViewChildList,getSupportFragmentManager());
+//        tabView.setOnTabChildClickListener(new TabView.OnTabChildClickListener() {
+//            @Override
+//            public void onTabChildClick(int  position, ImageView currentImageIcon, TextView currentTextView) {
+//                // Toast.makeText(getApplicationContext(),"position:"+position,Toast.LENGTH_SHORT).show();
+//                transaction = fragmentManager.beginTransaction();
+//                hideFragments(transaction);
+//                switch (position) {
+//                    case 0:
+//                        if (openEyeFragment == null) {
+//                            openEyeFragment = new OpenEyeFragment();
+//                            transaction.add(R.id.main_fragment, openEyeFragment);
+//                        } else {
+//                            transaction.show(openEyeFragment);
+//                        }
+//                        break;
+//                    case 1:
+//                        if (oneSeatFragment == null) {
+//                            oneSeatFragment = new OneSeatFragment();
+//                            transaction.add(R.id.main_fragment, oneSeatFragment);
+//                        } else {
+//                            transaction.show(oneSeatFragment);
+//                        }
+//                        break;
+//                    case 2:
+//                        if (doubanFragment == null) {
+//                            doubanFragment = new DoubanFragment();
+//                            transaction.add(R.id.main_fragment, doubanFragment);
+//                        } else {
+//                            transaction.show(doubanFragment);
+//                        }
+//                        break;
+//                    case 3:
+//                        if (settingFragment == null) {
+//                            settingFragment = new SettingFragment();
+//                            transaction.add(R.id.main_fragment, settingFragment);
+//                        } else {
+//                            transaction.show(settingFragment);
+//                        }
+//                        break;
+//                    default:
+//                        if (openEyeFragment == null) {
+//                            openEyeFragment = new OpenEyeFragment();
+//                            transaction.add(R.id.main_fragment, openEyeFragment);
+//                        } else {
+//                            transaction.show(openEyeFragment);
+//                        }
+//                }
+//                transaction.commit();
+//            }
+//        });
+
+        transaction = fragmentManager.beginTransaction();
+        if(openEyeFragment == null){
+            openEyeFragment = new OpenEyeFragment();
+            transaction.add(R.id.main_fragment, openEyeFragment);
+        }else{
+            transaction.show(openEyeFragment);
+        }
+        transaction.commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
