@@ -31,18 +31,17 @@ import butterknife.ButterKnife;
  */
 public class OneSeatFragment extends Fragment implements OneSeatContract.View {
 
-    @Bind(R.id.recyclerview)
-    RecyclerView recyclerView;
-
-    OneSeatAdapter oneSeatAdapter;
+//    @Bind(R.id.recyclerview)
+//    RecyclerView recyclerView;
+//
+//    OneSeatAdapter oneSeatAdapter;
 
     @Inject
     OneSeatPresenter oneSeatPresenter;
 
-    public static OneSeatFragment newInstance(String text){
+    public static OneSeatFragment newInstance(){
         OneSeatFragment fragmentCommon=new OneSeatFragment();
         Bundle bundle=new Bundle();
-        bundle.putString("text",text);
         fragmentCommon.setArguments(bundle);
         return fragmentCommon;
     }
@@ -57,8 +56,8 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
         View view = inflater.inflate(R.layout.fragment_one_seat, container, false);
         ButterKnife.bind(this, view);
         initPresenter();
-        initData();
-        initTest();
+//        initData();
+//        initTest();
         return view;
     }
 
@@ -70,15 +69,15 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
                 .inject(this);
     }
 
-    private void initData(){
-        oneSeatAdapter = new OneSeatAdapter(this.getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(oneSeatAdapter);
-    }
+//    private void initData(){
+//        oneSeatAdapter = new OneSeatAdapter(this.getContext());
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+//        recyclerView.setAdapter(oneSeatAdapter);
+//    }
 
-    private void initTest(){
-        oneSeatPresenter.getOneSeatEntityList();
-    }
+//    private void initTest(){
+//        oneSeatPresenter.getOneSeatEntityList();
+//    }
 
     @Override
     public void onDestroyView() {
@@ -88,6 +87,6 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
 
     @Override
     public void showRecyclerView(List<OneEntity.dataBean> oneEntityList) {
-        oneSeatAdapter.setData(oneEntityList);
+//        oneSeatAdapter.setData(oneEntityList);
     }
 }

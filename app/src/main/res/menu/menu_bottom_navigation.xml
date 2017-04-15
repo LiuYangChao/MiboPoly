@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_pic"
-        android:title="放"
-        android:icon="@drawable/ic_action_pic"/>
+        android:title="video"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_home_black_24dp"/>
 
     <item
         android:id="@+id/action_article"
-        android:title="飞"
-        android:icon="@drawable/ic_action_article"/>
+        android:title="article"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_search_black_24dp"/>
 
     <item
         android:id="@+id/action_movie"
-        android:title="自"
-        android:icon="@drawable/ic_action_movie"/>
+        android:title="movie"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_account_circle_black_24dp"/>
 
     <item
         android:id="@+id/action_me"
-        android:title="我"
-        android:icon="@drawable/ic_action_me"/>
+        android:title="me"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings_black_24dp"/>
 
 </menu>

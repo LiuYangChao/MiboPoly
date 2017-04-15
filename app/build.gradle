@@ -49,6 +49,7 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'com.ycl.tabview.library:tabviewlibrary:1.0'
     compile 'com.github.githubwing:ByeBurger:1.2.3'
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.7'
 }
