@@ -1,6 +1,7 @@
 package com.cssrc.mibopoly.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
@@ -19,9 +20,12 @@ import com.cssrc.mibopoly.app.miboApplication;
 import com.cssrc.mibopoly.di.components.DaggerOneSeatComponent;
 import com.cssrc.mibopoly.di.modules.OneSeatModule;
 import com.cssrc.mibopoly.di.modules.OpenEyeModule;
+import com.cssrc.mibopoly.model.entity.OneDetailEntity;
 import com.cssrc.mibopoly.model.entity.OneEntity;
 import com.cssrc.mibopoly.presenter.OneSeatContract;
 import com.cssrc.mibopoly.presenter.OneSeatPresenter;
+import com.cssrc.mibopoly.view.activity.OneSeatDetailActivity;
+import com.cssrc.mibopoly.view.listener.ItemClickListener;
 
 import java.util.List;
 
@@ -77,7 +81,19 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
         oneSeatAdapter = new OneSeatAdapter(this.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(oneSeatAdapter);
-//        recyclerView.addOnItemTouchListener();
+        recyclerView.addOnItemTouchListener(new ItemClickListener(this.getContext(),
+                new ItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        List<OneEntity.dataBean> oneList = oneSeatAdapter.getData();
+                        OneEntity.dataBean oneData = oneList.get(position);
+                        oneSeatPresenter.getOneDetail(oneData.getItem_id());
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int posotion) {
+                    }
+                }));
     }
 
     private void initTest(){
@@ -93,6 +109,16 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
     @Override
     public void showRecyclerView(List<OneEntity.dataBean> oneEntityList) {
         oneSeatAdapter.setData(oneEntityList);
+    }
+
+    @Override
+    public void jumpToOneSeatDetailActivity(OneDetailEntity oneDetailEntity) {
+        Intent intent = new Intent(this.getContext(), OneSeatDetailActivity.class);
+        intent.putExtra("one_detail_title", oneDetailEntity.getData().getHp_title());
+        intent.putExtra("profile_image", oneDetailEntity.getData().getAuthor().get(0).getWeb_url());
+        intent.putExtra("one_detail_author", oneDetailEntity.getData().getAuthor().get(0).getUser_name());
+        intent.putExtra("one_detail_content", oneDetailEntity.getData().getHp_content());
+        this.startActivity(intent);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.cssrc.mibopoly.presenter;
 
+import com.cssrc.mibopoly.model.entity.OneDetailEntity;
 import com.cssrc.mibopoly.model.entity.OneEntity;
 import com.cssrc.mibopoly.model.entity.OpenEyeEntity;
 
@@ -14,10 +15,14 @@ public interface OneSeatContract {
 
     interface Presenter{
         void getOneSeatEntityList();
+
+        void getOneDetail(String itemId);
     }
 
     interface View{
         void showRecyclerView(List<OneEntity.dataBean> oneEntityList);
+
+        void jumpToOneSeatDetailActivity(OneDetailEntity oneDetailEntity);
     }
 
 }

@@ -10,7 +10,23 @@ import java.util.List;
 public class OneDetailEntity {
 
     int res;
-    List<dataBean> data;
+    dataBean data;
+
+    public int getRes() {
+        return res;
+    }
+
+    public void setRes(int res) {
+        this.res = res;
+    }
+
+    public dataBean getData() {
+        return data;
+    }
+
+    public void setData(dataBean data) {
+        this.data = data;
+    }
 
     public static class dataBean{
 

@@ -38,7 +38,7 @@ public class OneSeatDetailActivity extends Activity {
         one_detail_title.setText(getIntent().getStringExtra("one_detail_title"));
         Glide.with(this).load(getIntent().getStringExtra("profile_image")).centerCrop().into(profile_image);
         one_detail_author.setText(getIntent().getStringExtra("one_detail_author"));
-        one_detail_content.loadUrl(getIntent().getStringExtra("one_detail_content"));
+        one_detail_content.loadData(getIntent().getStringExtra("one_detail_content"), "text/html; charset=UTF-8", null);
     }
 
 }
