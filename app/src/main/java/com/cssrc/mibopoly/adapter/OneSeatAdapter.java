@@ -1,6 +1,7 @@
 package com.cssrc.mibopoly.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cssrc.mibopoly.R;
 import com.cssrc.mibopoly.model.entity.OneEntity;
+import com.cssrc.mibopoly.view.activity.OneSeatDetailActivity;
+import com.cssrc.mibopoly.view.activity.OpenEyeVideoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +44,24 @@ public class OneSeatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        OneEntity.dataBean oneEntity = oneEntityList.get(position);
+        final OneEntity.dataBean oneEntity = oneEntityList.get(position);
         OneSeatHolder oneSeatHolder = (OneSeatHolder) holder;
         Glide.with(context).load(oneEntity.getImg_url()).centerCrop().into(oneSeatHolder.imageView);
         oneSeatHolder.author.setText(oneEntity.getAuthor().getUser_name());
         oneSeatHolder.des.setText(oneEntity.getForward());
         oneSeatHolder.time.setText(oneEntity.getPost_date());
         oneSeatHolder.title.setText(oneEntity.getTitle());
+        oneSeatHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OneSeatDetailActivity.class);
+//                intent.putExtra("one_detail_title", oneEntity);
+//                intent.putExtra("profile_image", openEyeEntity.getData().getTitle());
+//                intent.putExtra("one_detail_author", openEyeHolder.subtitle.getText().toString());
+//                intent.putExtra("one_detail_content", openEyeEntity.getData().getProvider().getName());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

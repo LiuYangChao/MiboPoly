@@ -90,6 +90,34 @@ public class OpenEyeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
+    static class OpenEyeHeaderHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.iv_cover)
+        ImageView imageView;
+        @Bind(R.id.open_title)
+        TextView title;
+        @Bind(R.id.open_time)
+        TextView subtitle;
+
+        public OpenEyeHeaderHolder(View view){
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    static class OpenEyeEndHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.iv_cover)
+        ImageView imageView;
+        @Bind(R.id.open_title)
+        TextView title;
+        @Bind(R.id.open_time)
+        TextView subtitle;
+
+        public OpenEyeEndHolder(View view){
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+
     public void setData(List<OpenEyeEntity> openEyeEntityList){
         this.openEyeEntityList.clear();
         this.openEyeEntityList.addAll(openEyeEntityList);

@@ -3,11 +3,15 @@ package com.cssrc.mibopoly.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.cssrc.mibopoly.R;
 import com.cssrc.mibopoly.adapter.OneSeatAdapter;
@@ -31,10 +35,10 @@ import butterknife.ButterKnife;
  */
 public class OneSeatFragment extends Fragment implements OneSeatContract.View {
 
-//    @Bind(R.id.recyclerview)
-//    RecyclerView recyclerView;
-//
-//    OneSeatAdapter oneSeatAdapter;
+    @Bind(R.id.recyclerview)
+    RecyclerView recyclerView;
+
+    OneSeatAdapter oneSeatAdapter;
 
     @Inject
     OneSeatPresenter oneSeatPresenter;
@@ -56,8 +60,8 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
         View view = inflater.inflate(R.layout.fragment_one_seat, container, false);
         ButterKnife.bind(this, view);
         initPresenter();
-//        initData();
-//        initTest();
+        initData();
+        initTest();
         return view;
     }
 
@@ -69,15 +73,16 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
                 .inject(this);
     }
 
-//    private void initData(){
-//        oneSeatAdapter = new OneSeatAdapter(this.getContext());
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-//        recyclerView.setAdapter(oneSeatAdapter);
-//    }
+    private void initData(){
+        oneSeatAdapter = new OneSeatAdapter(this.getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(oneSeatAdapter);
+//        recyclerView.addOnItemTouchListener();
+    }
 
-//    private void initTest(){
-//        oneSeatPresenter.getOneSeatEntityList();
-//    }
+    private void initTest(){
+        oneSeatPresenter.getOneSeatEntityList();
+    }
 
     @Override
     public void onDestroyView() {
@@ -87,6 +92,7 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
 
     @Override
     public void showRecyclerView(List<OneEntity.dataBean> oneEntityList) {
-//        oneSeatAdapter.setData(oneEntityList);
+        oneSeatAdapter.setData(oneEntityList);
     }
+
 }

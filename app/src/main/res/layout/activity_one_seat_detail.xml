@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_one_seat_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cssrc.mibopoly.view.activity.OneSeatDetailActivity">
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/one_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="文章标题" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="5dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"/>
+                    <TextView
+                        android:id="@+id/one_detail_author"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/profile_image"
+                        android:layout_marginLeft="10dp"
+                        android:text="作者" />
+
+                </RelativeLayout>
+
+                <WebView
+                    android:id="@+id/one_detail_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/one_comment_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="评论列表" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/black" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/one_comment_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+</FrameLayout>
