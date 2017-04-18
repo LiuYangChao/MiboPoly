@@ -55,9 +55,50 @@ public class OpenEyePresenter implements OpenEyeContract.Presenter {
                                 openEyeEntityListResult.add(openEyeEntity);
                             }
                         }
-                        view.showRecyclerView(openEyeEntityListResult);
+                        view.showRecyclerView(openEyeEntityListResult, openEyeItem.getNextPageUrl());
+                    }
+                });
+    }
+
+    /**
+     * @param url       请求的URL
+     * @param currentOpenEyeEntityList      当前数据列表
+     * @param scrollPosition                        当前数据刷新方向
+     */
+    @Override
+    public void loadScrollerData(String url,
+                                 final List<OpenEyeEntity> currentOpenEyeEntityList,
+                                 final String scrollPosition) {
+        apiService.getOpenEyeTopOrBottom(url)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<OpenEyeItem>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i("openeye", "com");
                     }
 
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("openeye", e.toString());
+                    }
+
+                    @Override
+                    public void onNext(OpenEyeItem openEyeItem) {
+                        List<OpenEyeEntity> openEyeEntityListResult = new ArrayList<OpenEyeEntity>();
+                        List<OpenEyeEntity> openEyeEntityList = openEyeItem.getItemList();
+                        for(OpenEyeEntity openEyeEntity : openEyeEntityList){
+                            if(openEyeEntity.getType()!=null && openEyeEntity.getType().equals("video")){
+                                openEyeEntityListResult.add(openEyeEntity);
+                            }
+                        }
+                        if(!scrollPosition.isEmpty() && scrollPosition.equals("top")){
+                            currentOpenEyeEntityList.addAll(0, openEyeEntityListResult);
+                        }else if(!scrollPosition.isEmpty() && scrollPosition.equals("bottom")){
+                            currentOpenEyeEntityList.addAll(openEyeEntityListResult);
+                        }
+                        view.showRecyclerView(currentOpenEyeEntityList, openEyeItem.getNextPageUrl());
+                    }
                 });
     }
 

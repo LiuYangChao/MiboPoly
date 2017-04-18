@@ -114,6 +114,7 @@ public class OneSeatFragment extends Fragment implements OneSeatContract.View {
     @Override
     public void jumpToOneSeatDetailActivity(OneDetailEntity oneDetailEntity) {
         Intent intent = new Intent(this.getContext(), OneSeatDetailActivity.class);
+        intent.putExtra("itemId", oneDetailEntity.getData().getContent_id());
         intent.putExtra("one_detail_title", oneDetailEntity.getData().getHp_title());
         intent.putExtra("profile_image", oneDetailEntity.getData().getAuthor().get(0).getWeb_url());
         intent.putExtra("one_detail_author", oneDetailEntity.getData().getAuthor().get(0).getUser_name());

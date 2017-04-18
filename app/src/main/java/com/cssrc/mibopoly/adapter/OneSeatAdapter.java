@@ -51,17 +51,6 @@ public class OneSeatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         oneSeatHolder.des.setText(oneEntity.getForward());
         oneSeatHolder.time.setText(oneEntity.getPost_date());
         oneSeatHolder.title.setText(oneEntity.getTitle());
-//        oneSeatHolder.imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, OneSeatDetailActivity.class);
-//                intent.putExtra("one_detail_title", oneEntity);
-//                intent.putExtra("profile_image", openEyeEntity.getData().getTitle());
-//                intent.putExtra("one_detail_author", openEyeHolder.subtitle.getText().toString());
-//                intent.putExtra("one_detail_content", openEyeEntity.getData().getProvider().getName());
-//                context.startActivity(intent);
-//            }
-//        });
     }
 
     @Override

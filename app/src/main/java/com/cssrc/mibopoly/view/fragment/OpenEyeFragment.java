@@ -20,6 +20,7 @@ import com.cssrc.mibopoly.di.modules.OpenEyeModule;
 import com.cssrc.mibopoly.model.entity.OpenEyeEntity;
 import com.cssrc.mibopoly.presenter.OpenEyeContract;
 import com.cssrc.mibopoly.presenter.OpenEyePresenter;
+import com.cssrc.mibopoly.view.listener.EndLessOnScrollListener;
 
 import java.util.List;
 
@@ -29,15 +30,22 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * 刷新规则：
+ * 下拉刷新更新内容从头开始
+ * 上滑刷新更新内容从尾开始
  * A simple {@link Fragment} subclass.
  */
 public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.recyclerview)
     RecyclerView openeye_recyclerview;
+    @Bind(R.id.swipe_refresh)
+    SwipeRefreshLayout swipe_refresh;
 
     Context context;
     OpenEyeAdapter openEyeAdapter;
+    String nextUrl;
+    List<OpenEyeEntity> currentOpenEyeEntityList;
 
     @Inject
     OpenEyePresenter openEyePresenter;
@@ -74,23 +82,22 @@ public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, S
 
     private void initView(){
         openEyeAdapter = new OpenEyeAdapter(this.getContext(), this);
-        openeye_recyclerview.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(
+                this.getContext(), LinearLayoutManager.VERTICAL, false);
+        openeye_recyclerview.setLayoutManager(mLinearLayoutManager);
 //        openeye_recyclerview.addItemDecoration(new DividerItemDecoration(this.getContext(), 1));
         openeye_recyclerview.setAdapter(openEyeAdapter);
-//        openeye_recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                if (newState == RecyclerView.SCROLL_STATE_IDLE && !isRefresh && hasMore && (lastVisibleItem+1  == recycleViewAdapter.getItemCount())){
-//                    loadData(page, mode, recycleViewAdapter.getLastItemId(),deviceId, recycleViewAdapter.getLastItemCreateTime());
-//                }
-//            }
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                lastVisibleItem = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
-//            }
-//        });
+        openeye_recyclerview.addOnScrollListener(new EndLessOnScrollListener(mLinearLayoutManager) {
+            @Override
+            public void onLoadMore(int currentPage) {
+                loadMoreData();
+            }
+        });
+        swipe_refresh.setOnRefreshListener(this);
+    }
 
+    private void loadMoreData(){
+        openEyePresenter.loadTop(nextUrl, currentOpenEyeEntityList);
     }
 
     private void initData(){
@@ -105,11 +112,13 @@ public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, S
 
     @Override
     public void onRefresh() {
-
+        openEyePresenter.loadBottom(nextUrl, currentOpenEyeEntityList);
     }
 
     @Override
-    public void showRecyclerView(List<OpenEyeEntity> openEyeEntityList) {
+    public void showRecyclerView(List<OpenEyeEntity> openEyeEntityList,
+                                 String nextUrl) {
         openEyeAdapter.setData(openEyeEntityList);
+        this.nextUrl = nextUrl;
     }
 }

@@ -1,5 +1,6 @@
 package com.cssrc.mibopoly.model.api;
 
+import com.cssrc.mibopoly.model.entity.OneComment;
 import com.cssrc.mibopoly.model.entity.OneDetailEntity;
 import com.cssrc.mibopoly.model.entity.OneEntity;
 import com.cssrc.mibopoly.model.entity.OpenEyeEntity;
@@ -43,5 +44,23 @@ public interface ApiService {
      */
     @GET
     Observable<OneDetailEntity> getOneDetailEntity(@Url String url);
+
+    /**
+     * http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/1715/0?channel=wdj&version=4.0.2
+     * &uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android
+     * @param url
+     * @return
+     */
+    @GET
+    Observable<OneComment> getOneComment(@Url String url);
+
+    /**
+     *
+     * @param url
+     * @return
+     */
+    @GET
+    Observable<OpenEyeItem> getOpenEyeTopOrBottom(@Url String url);
+
 
 }
