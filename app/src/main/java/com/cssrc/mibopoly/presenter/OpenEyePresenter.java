@@ -75,12 +75,12 @@ public class OpenEyePresenter implements OpenEyeContract.Presenter {
                 .subscribe(new Subscriber<OpenEyeItem>() {
                     @Override
                     public void onCompleted() {
-                        Log.i("openeye", "com");
+                        Log.i("scroll", "scrollcom");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("openeye", e.toString());
+                        Log.i("scroll", e.toString());
                     }
 
                     @Override

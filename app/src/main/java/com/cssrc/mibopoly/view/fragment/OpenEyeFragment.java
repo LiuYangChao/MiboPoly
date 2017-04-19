@@ -97,7 +97,7 @@ public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, S
     }
 
     private void loadMoreData(){
-        openEyePresenter.loadTop(nextUrl, currentOpenEyeEntityList);
+        openEyePresenter.loadScrollerData(nextUrl, currentOpenEyeEntityList, "bottom");
     }
 
     private void initData(){
@@ -112,13 +112,17 @@ public class OpenEyeFragment extends Fragment implements OpenEyeContract.View, S
 
     @Override
     public void onRefresh() {
-        openEyePresenter.loadBottom(nextUrl, currentOpenEyeEntityList);
+        if(nextUrl != null){
+            openEyePresenter.loadScrollerData(nextUrl, currentOpenEyeEntityList, "top");
+        }
     }
 
     @Override
     public void showRecyclerView(List<OpenEyeEntity> openEyeEntityList,
                                  String nextUrl) {
+        currentOpenEyeEntityList = openEyeEntityList;
         openEyeAdapter.setData(openEyeEntityList);
         this.nextUrl = nextUrl;
+        swipe_refresh.setRefreshing(false);
     }
 }
