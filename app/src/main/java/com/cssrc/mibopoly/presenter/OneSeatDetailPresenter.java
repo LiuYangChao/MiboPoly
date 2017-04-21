@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -35,6 +36,7 @@ public class OneSeatDetailPresenter implements OneSeatDetailContract.Presenter{
         apiService.getOneComment("http://v3.wufazhuce.com:8000/api/comment/praiseandtime/essay/"+itemId+
             "/0?channel=wdj&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android")
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<OneComment>() {
                     @Override
                     public void onCompleted() {

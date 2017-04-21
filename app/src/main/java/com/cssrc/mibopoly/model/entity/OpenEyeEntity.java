@@ -48,7 +48,6 @@ public class OpenEyeEntity {
         private String category;
         private String image;
         private String actionUrl;
-        private String adTrack;
         private String shade;
         private String playUrl;
         private int duration;
@@ -144,14 +143,6 @@ public class OpenEyeEntity {
 
         public void setActionUrl(String actionUrl) {
             this.actionUrl = actionUrl;
-        }
-
-        public String getAdTrack() {
-            return adTrack;
-        }
-
-        public void setAdTrack(String adTrack) {
-            this.adTrack = adTrack;
         }
 
         public String getShade() {

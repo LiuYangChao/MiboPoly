@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -34,6 +35,7 @@ public class OneSeatPresenter implements OneSeatContract.Presenter {
     public void getOneSeatEntityList() {
         apiService.getOneSeat("http://v3.wufazhuce.com:8000/api/channel/reading/more/0")
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<OneEntity>() {
                     @Override
                     public void onCompleted() {
@@ -59,6 +61,7 @@ public class OneSeatPresenter implements OneSeatContract.Presenter {
         apiService.getOneDetailEntity("http://v3.wufazhuce.com:8000/api/essay/"+itemId+
             "?channel=wdj&source=channel_reading&source_id=9264&version=4.0.2&uuid=ffffffff-a90e-706a-63f7-ccf973aae5ee&platform=android")
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<OneDetailEntity>() {
                     @Override
                     public void onCompleted() {

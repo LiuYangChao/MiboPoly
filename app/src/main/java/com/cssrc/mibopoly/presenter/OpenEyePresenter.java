@@ -13,6 +13,7 @@ import javax.inject.Inject;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -71,20 +72,9 @@ public class OpenEyePresenter implements OpenEyeContract.Presenter {
                                  final String scrollPosition) {
         apiService.getOpenEyeTopOrBottom(url)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<OpenEyeItem>() {
+                .map(new Func1<OpenEyeItem, String>() {
                     @Override
-                    public void onCompleted() {
-                        Log.i("scroll", "scrollcom");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i("scroll", e.toString());
-                    }
-
-                    @Override
-                    public void onNext(OpenEyeItem openEyeItem) {
+                    public String call(OpenEyeItem openEyeItem) {
                         List<OpenEyeEntity> openEyeEntityListResult = new ArrayList<OpenEyeEntity>();
                         List<OpenEyeEntity> openEyeEntityList = openEyeItem.getItemList();
                         for(OpenEyeEntity openEyeEntity : openEyeEntityList){
@@ -97,9 +87,43 @@ public class OpenEyePresenter implements OpenEyeContract.Presenter {
                         }else if(!scrollPosition.isEmpty() && scrollPosition.equals("bottom")){
                             currentOpenEyeEntityList.addAll(openEyeEntityListResult);
                         }
-                        view.showRecyclerView(currentOpenEyeEntityList, openEyeItem.getNextPageUrl());
+                        return openEyeItem.getNextPageUrl();
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("openeye", e.toString());
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        view.showRecyclerView(currentOpenEyeEntityList, s);
                     }
                 });
     }
+
+//    @Override
+//    public void onNext(OpenEyeItem openEyeItem) {
+//        List<OpenEyeEntity> openEyeEntityListResult = new ArrayList<OpenEyeEntity>();
+//        List<OpenEyeEntity> openEyeEntityList = openEyeItem.getItemList();
+//        for(OpenEyeEntity openEyeEntity : openEyeEntityList){
+//            if(openEyeEntity.getType()!=null && openEyeEntity.getType().equals("video")){
+//                openEyeEntityListResult.add(openEyeEntity);
+//            }
+//        }
+//        if(!scrollPosition.isEmpty() && scrollPosition.equals("top")){
+//            currentOpenEyeEntityList.addAll(0, openEyeEntityListResult);
+//        }else if(!scrollPosition.isEmpty() && scrollPosition.equals("bottom")){
+//            currentOpenEyeEntityList.addAll(openEyeEntityListResult);
+//        }
+//        view.showRecyclerView(currentOpenEyeEntityList, openEyeItem.getNextPageUrl());
+//    }
 
 }

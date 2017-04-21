@@ -1,6 +1,7 @@
 package com.cssrc.mibopoly.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,10 +63,13 @@ public class OneSeatDetailActivity extends AppCompatActivity implements OneSeatD
     }
 
     private void initView(){
-        one_detail_title.setText(getIntent().getStringExtra("one_detail_title"));
-        Glide.with(this).load(getIntent().getStringExtra("profile_image")).centerCrop().into(profile_image);
-        one_detail_author.setText(getIntent().getStringExtra("one_detail_author"));
-        one_detail_content.loadData(getIntent().getStringExtra("one_detail_content"), "text/html; charset=UTF-8", null);
+        Intent intent = getIntent();
+        one_detail_title.setText(intent.getStringExtra("one_detail_title"));
+        Glide.with(this).load(intent.getStringExtra("profile_image")).centerCrop().into(profile_image);
+        one_detail_author.setText(intent.getStringExtra("one_detail_author"));
+//        one_detail_content.loadData(intent.getStringExtra("one_detail_content"), "text/html; charset=UTF-8", null);
+        itemId = intent.getStringExtra("itemId");
+        one_detail_content.loadDataWithBaseURL(null, intent.getStringExtra("one_detail_content"), "text/html", "utf-8", null);
         oneSeatCommentAdapter = new OneSeatCommentAdapter(this);
         //解决ScrollerView和RecyclerView的嵌套滑动冲突问题
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false) {
@@ -77,7 +81,7 @@ public class OneSeatDetailActivity extends AppCompatActivity implements OneSeatD
 //        one_comment_recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         one_comment_recyclerview.setLayoutManager(linearLayoutManager);
         one_comment_recyclerview.setAdapter(oneSeatCommentAdapter);
-        itemId = getIntent().getStringExtra("itemId");
+
     }
 
     private void initData(){
