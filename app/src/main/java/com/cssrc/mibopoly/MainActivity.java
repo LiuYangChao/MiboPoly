@@ -2,7 +2,6 @@ package com.cssrc.mibopoly;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -16,12 +15,10 @@ import com.cssrc.mibopoly.di.components.DaggerMainComponent;
 import com.cssrc.mibopoly.di.modules.MainModule;
 import com.cssrc.mibopoly.presenter.MainContract;
 import com.cssrc.mibopoly.presenter.MainPresenter;
-import com.cssrc.mibopoly.view.fragment.DoubanFragment;
+import com.cssrc.mibopoly.view.fragment.TuChongFragment;
 import com.cssrc.mibopoly.view.fragment.OneSeatFragment;
 import com.cssrc.mibopoly.view.fragment.OpenEyeFragment;
 import com.cssrc.mibopoly.view.fragment.SettingFragment;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Bind(R.id.toolBar)
     Toolbar toolbar;
 
-    DoubanFragment doubanFragment;
+    TuChongFragment tuChongFragment;
     OneSeatFragment oneSeatFragment;
     OpenEyeFragment openEyeFragment;
     SettingFragment settingFragment;
@@ -134,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 }
                 break;
             case 2:
-                if(doubanFragment == null){
-                    doubanFragment = new DoubanFragment();
-                    transaction.add(R.id.fragment, doubanFragment);
+                if(tuChongFragment == null){
+                    tuChongFragment = new TuChongFragment();
+                    transaction.add(R.id.fragment, tuChongFragment);
                 }else{
-                    transaction.show(doubanFragment);
+                    transaction.show(tuChongFragment);
                 }
                 break;
             case 3:
@@ -166,8 +163,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      * @param
      */
     private void hideFragments(FragmentTransaction transaction) {
-        if (doubanFragment != null) {
-            transaction.hide(doubanFragment);
+        if (tuChongFragment != null) {
+            transaction.hide(tuChongFragment);
         }
         if (oneSeatFragment != null) {
             transaction.hide(oneSeatFragment);

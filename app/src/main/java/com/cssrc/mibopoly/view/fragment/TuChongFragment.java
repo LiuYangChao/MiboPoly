@@ -12,24 +12,25 @@ import com.cssrc.mibopoly.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DoubanFragment extends Fragment {
+public class TuChongFragment extends Fragment {
 
-    public static DoubanFragment newInstance(){
-        DoubanFragment fragmentCommon=new DoubanFragment();
+    public static TuChongFragment newInstance(){
+        TuChongFragment fragmentCommon=new TuChongFragment();
         Bundle bundle=new Bundle();
         fragmentCommon.setArguments(bundle);
         return fragmentCommon;
     }
 
-    public DoubanFragment() {
-        // Required empty public constructor
-    }
+    public TuChongFragment() {
 
+
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_douban, container, false);
     }
 
